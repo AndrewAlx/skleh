@@ -1,0 +1,32 @@
+%head
+  = stylesheet_link_tag 'application'
+%body
+  .menu
+    .row
+      .menu-item.col-4
+        #contests
+          Соревнования
+          -#%a= link_to
+      .menu-item.col-4
+        #about
+          О Нас
+          -#%a= link_to
+      .menu-item.col-4
+        #profile
+          Профиль
+          - if current_user
+            %a= link_to "Выйти", destroy_user_session_path, method: :delete
+          - else
+            %a= link_to "Войти", new_user_session_path, title: "pizdataya ssilka", style:"font-size:14px;"
+            %a= link_to "Регистрация", new_user_registration_path
+  .page
+    .row
+      #content
+        .col-6
+          Контент тут будет лорем ипсум долор амет
+      #news
+        .col-6
+          .news_item_1
+            Контент новость 1
+          .news_item_2
+            Контент новость 2
