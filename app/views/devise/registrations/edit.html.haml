@@ -1,0 +1,32 @@
+%h2 Настройки аккаунта
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| 
+  = render "devise/shared/error_messages", resource: resource 
+  .field
+    = f.label "Адрес электронной почты" 
+    %br
+    = f.email_field :email, autofocus: true
+   - if devise_mapping.confirmable? && resource.pending_reconfirmation? 
+    %div Ожидается подтверждение адреса электронной почты: #{resource.unconfirmed_email}
+  .field
+    = f.label "Новый пароль" 
+    %i (оставьте пустым, чтобы оставить без изменений)
+    %br
+    = f.password_field :password
+     - if @minimum_password_length 
+      %br
+      %em (минимум #{@minimum_password_length} символов)
+  .field
+    = f.label "Повторите пароль"
+    %br
+    = f.password_field :password_confirmation
+  .field
+    = f.label "Текущий пароль"  
+    %i (нужно подтвердить, что вы являеетесь владельцем аккаунта)
+    %br
+    = f.password_field :current_password
+  .actions
+    = f.submit "Подтвердить"
+%h3 Удалить мой аккаунт
+%p :( 
+  = button_to "Удалить мой аккаунт", registration_path(resource_name), data: { confirm: "Вы уверены?" }, method: :delete
+= link_to "Назад", :back 
