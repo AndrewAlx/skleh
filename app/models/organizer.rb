@@ -1,3 +1,0 @@
-class Organizer < User
-
-end
