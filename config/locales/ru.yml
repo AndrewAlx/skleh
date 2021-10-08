@@ -1,0 +1,10 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        current_password: Текущий пароль
+        password_confirmation: Подтверждение пароля
+        password: Пароль
+  errors:
+    messages:
+      not_saved: Не удалось сохранить
