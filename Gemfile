@@ -34,6 +34,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry', '~> 0.13.1'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
@@ -56,3 +57,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml'
 gem 'devise'
+gem 'simple_form'
+gem 'jquery-rails'

@@ -1,0 +1,8 @@
+.page
+  - if @contest.tasks.present?
+    %ul
+      - @contest.tasks.map do |task|
+        %li
+          = link_to task.name, task
+  - else
+    %h1 Пока что заданий нет!

@@ -1,0 +1,11 @@
+.task-page
+  %h2= @task.name
+  .description
+    %h2 Описание задания
+    %p= @task.description
+    %p Количетсво баллов за выполнение: #{@task.points}
+  .sql
+    = simple_form_for [@task.contest, @task], method: :get, url: url_for(controller: params[:controller], action: :show), as: 'q', remote: true do |f|
+      = f.input :query, as: :text
+      = f.submit "Отправить"
+    #query-result

@@ -1,4 +1,4 @@
 class Contest < ApplicationRecord
   has_many :tasks
-  belongs_to :organizer
+  belongs_to :user
 end
