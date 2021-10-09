@@ -1,1 +1,7 @@
-$('#query-result').html('<%= @query %>')
+$('#query-result').html(
+  "<% if @query_result.present? && @query_result != 'Неправильный запрос!' %> <span>Результат запроса</span> <% else %> <% end %> <% if @query_result.present? && @query_result != 'Неправильный запрос!' %> <%= table_for_query_rows(@query_result) %> <% else %> Неправильный запрос! <% end %>"
+)
+$('#right-result').html(
+  "<% if @query_result.present? && @query_result != 'Неправильный запрос!' %> <span>Правильный ответ</span> <% else %> <% end %> <% if @query_result.present? && @query_result != 'Неправильный запрос!' %> <%= table_for_query_rows(@correct_result) %> <% end %>"
+)
+$('.task-page > h2').html("<% if @query_result.present? && @correct_result.present? && @query_result.rows == @correct_result.rows%> <%= @task.name + '(Выполнено)' %> <% end %>")

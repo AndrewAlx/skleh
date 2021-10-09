@@ -1,0 +1,32 @@
+%h2 Регистрация
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  .field
+    = f.label "Адрес электронной почты"
+    %br
+    = f.email_field :email, autofocus: true, required: true
+  .field
+    = f.label "Имя пользователя (логин)"
+    %br
+    = f.text_field :username, required: true
+  .field
+    = f.label "Имя"
+    %br
+    = f.text_field :first_name
+  .field
+    = f.label "Фамилия"
+    %br
+    = f.text_field :last_name
+  .field
+    = f.label "Пароль"
+    - if @minimum_password_length
+      %em (минимум #{@minimum_password_length} символов)
+    %br
+    = f.password_field :password, required: true
+  .field
+    = f.label "Подтверждение пароля"
+    %br
+    = f.password_field :password_confirmation, required: true
+  .field
+    = f.submit "Зарегистрироваться"
+= render "devise/shared/links"

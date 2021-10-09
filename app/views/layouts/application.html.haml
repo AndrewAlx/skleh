@@ -7,7 +7,7 @@
     .row
       .menu-item.col-4
         #contests
-          = link_to "Соревнования", controller: 'contests', action: 'index'
+          = link_to "Соревнования", "#{root_url}/contests"
       .menu-item.col-4
         #about
           О Нас
@@ -16,8 +16,10 @@
         #profile
           Профиль
           - if current_user
+            .username
+              = current_user.username
             %a= link_to "Выйти", destroy_user_session_path, method: :delete
           - else
-            %a= link_to "Войти", new_user_session_path, title: "pizdataya ssilka", style:"font-size:14px;"
+            %a= link_to "Войти", new_user_session_path
             %a= link_to "Регистрация", new_user_registration_path
 = yield
