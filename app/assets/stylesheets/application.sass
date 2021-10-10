@@ -1,25 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap')
+
+/* reset */
+
+body
+  margin: 0
+
+a
+  text-decoration: none
+  color: inherit
+
+li 
+  list-style-type: none
+
+/* style */
+
+$drkgray: hsl(0, 0%, 15%)
+$gray: hsl(0, 5%, 20%)
+$lghtgray: hsl(0, 10%, 25%)
+$main-bg-color: linear-gradient(150deg, $drkgray 0%, $gray 90%, $lghtgray 100%) no-repeat
+
+$ruby: hsl(0, 80%, 40%)
+$ruby-darker: hsl(0, 80%, 20%)
+$ruby-dark: hsl(0, 80%, 18%)
+$ruby-dirty: hsl(0, 10%, 40%)
+$ruby-white: hsl(0, 10%, 85%)
+
+$scrollbar-color: $ruby
+$li-highlight-color: $ruby
+$navbar-color: $ruby-darker
+$navbar-border-color: $ruby-dark
+$task-completed-color: $ruby-dirty
+$main-font-color: $ruby-white
+$scrollbar-bg: hsl(0, 0%, 18%)
+
+*
+  scrollbar-width: thin
+  scrollbar-color: $scrollbar-color $scrollbar-bg
+
+*::-webkit-scrollbar
+  width: 8px
+  height: 8px
+
+*::-webkit-scrollbar-track
+  background: $scrollbar-bg
+
+*::-webkit-scrollbar-thumb
+  background-color: $scrollbar-color
+  border-radius: 20px
+
+html
+  font-family: 'Roboto Condensed', helvetica, verdana, Arial, sans-serif
+  font-size: 24px
+  width: 100vw
+  min-height: 100vh
+  height: fit-content
+  overflow: hidden auto
+
+body
+  color: $main-font-color
+  height: 100%
+  width: 100%
+  background: $main-bg-color
+
 .menu
-  display: flex
-  flex-direction: row
-  justify-content: center
+  width: 100vw
+  height: 3rem
+  display: grid
+  grid-template-columns: 2fr 2.7fr 1.5fr 2fr
   .menu-item
     display: inline-block
-  .username
+    display: flex
+    border-right: 2px solid $navbar-border-color
+    a
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      background: $navbar-color
+      &:hover 
+        color: white
+    &#profile 
+      flex-direction: column
+      a 
+        margin-right: 38px
+        flex-direction: column
+        font-size: 0.8em
+      a[href='/users/sign_in'] 
+        justify-content: flex-end
+      a[href='/users/sign_up'] 
+        justify-content: flex-start
+    &#skleh img 
+      height: 32px
+      width: 32px
+      margin-right: 10px
+      margin-left: 10px
+      filter: invert(1)
+  .username 
     border: 1px solid black
-.contests-page
-  text-align: center
-  .contests
+
+.contests-page 
+  text-align: center 
+  .contests 
     text-align: left
-.page
+
+.page 
   display: flex
   justify-content: space-between
-#content, #news
+
+
+#content, #news 
   display: inline-block
   margin: auto
-.field
+
+.field 
   margin-bottom: 10px
-.sql
-  #query-result, #right-result
-    display: inline-block
-  #right-result
-    margin-left: 5px
+
+.sql #query-result, .sql #right-result 
+  display: inline-block
+
+.sql #right-result 
+  margin-left: 5px
+
+.tasks-container 
+  padding: 0
+  display: grid
+  gap: 0.75rem
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr))
+
+.task-item 
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  background: hsl(0, 50%, 40%)
+  font-size: 1.2rem
+
+  height: 100%
+  width: 100%
+  border-radius: 10px
+  transition: all 150ms
+  overflow: hidden
+
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+
+  color: hsl(0, 0%, 10%)
+  line-height: 2rem
+  &:hover 
+    box-shadow: hsla(0, 10%, 100%, 0.2) 0px 0px 0.5rem
+    transform: translateY(-3px) scale(1.05)
+    background: $ruby
+  &::before 
+    color: hsl(0, 0%, 10%)
+    font-size: 2.25rem
+    line-height: 0.5rem
+    margin-top: 0.5rem
+  &.completed 
+    background: $task-completed-color
+
+.difficulty-1::before 
+  content: '•'
+
+.difficulty-2::before 
+  content: '••'
+
+.difficulty-3::before 
+  content: '•••'
+
+h1 
+  font-size: 3rem
+  font-weight: normal
+
+.tasks-page 
+  width: clamp(200px, 65ch, 80%)
+  margin: auto

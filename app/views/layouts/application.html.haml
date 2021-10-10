@@ -1,25 +1,23 @@
 %head
+  %link{href: "https://fonts.googleapis.com", rel: "preconnect"}
+  %link{crossorigin: "", href: "https://fonts.gstatic.com", rel: "preconnect"}
+  %link{href: "https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap", rel: "stylesheet"}
   = stylesheet_link_tag 'application'
   = javascript_pack_tag 'application'
   = csrf_meta_tags
 %body
   .menu
-    .row
-      .menu-item.col-4
-        #contests
-          = link_to "Соревнования", "#{root_url}/contests"
-      .menu-item.col-4
-        #about
-          О Нас
-          -#%a= link_to
-      .menu-item.col-4
-        #profile
-          Профиль
-          - if current_user
-            .username
-              = current_user.username
-            %a= link_to "Выйти", destroy_user_session_path, method: :delete
-          - else
-            %a= link_to "Войти", new_user_session_path
-            %a= link_to "Регистрация", new_user_registration_path
+    .menu-item#contests
+      = link_to "Соревнования", "#{root_url}/contests"
+    .menu-item#about
+      %a О Нас
+      -#%a= link_to
+    .menu-item#profile
+      - if current_user
+        %a.username
+          = current_user.username
+        %a= link_to "Выйти", destroy_user_session_path, method: :delete
+      - else
+        %a= link_to "Войти", new_user_session_path
+        %a= link_to "Регистрация", new_user_registration_path
 = yield

@@ -1,8 +1,7 @@
 .tasks-page
   - if @tasks.present?
-    %h1 Задачи:
-    .contests
-      %ul
-        - @tasks.map do |task|
-          %li
-            = link_to task.name, contest_task_path(task.contest, task)
+    %h1 Задачи
+    %ul.tasks-container
+      - @tasks.map do |task|
+        %li
+          = link_to task.name, contest_task_path(task.contest, task)
