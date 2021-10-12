@@ -1,8 +1,31 @@
 .contests-page
   - if @contests.present?
-    %h1 Текущие соревнования:
-    .contests
-      %ul
+    %h1 Текущие соревнования
+    %table.contests-container{cellspacing: "0"}
+      %thead
+        %tr
+          %th 
+            %span ID
+          %th 
+            %span Название
+          %th 
+            %span Организатор
+          %th 
+            %span Дата начала
+          %th 
+            %span Дата окончания
+      %tbody
         - @contests.map do |contest|
-          %li
-            = link_to contest.name, contest
+          %tr
+            %td
+              = link_to contest.id, contest
+            %td
+              = link_to contest.name, contest
+            %td
+              -# TODO: заменить на линк к профилю
+              %a{href: "#"}
+                = contest.user.username
+            %td
+              = link_to contest.start_time || "-", contest
+            %td
+              = link_to contest.end_time || "-", contest

@@ -4,4 +4,5 @@
     %ul.tasks-container
       - @tasks.map do |task|
         %li
-          = link_to task.name, contest_task_path(task.contest, task)
+          %a{class:"task-item difficulty-#{task.points}", href: "#{contest_task_path(task.contest, task)}"} 
+            = task.name
