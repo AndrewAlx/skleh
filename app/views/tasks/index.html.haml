@@ -4,5 +4,5 @@
     %ul.tasks-container
       - @tasks.map do |task|
         %li
-          %a{class:"task-item difficulty-#{task.points}", href: "#{contest_task_path(task.contest, task)}"} 
+          %a{class:"task-item difficulty-#{task.points}#{' completed' if @task_solved[task]}", href: "#{contest_task_path(task.contest, task)}"} 
             = task.name

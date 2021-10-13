@@ -64,9 +64,10 @@ html
 
 body
   color: $main-font-color
-  height: 100%
+  height: fit-content
   width: 100%
   background: $main-bg-color
+  padding-bottom: 2rem
 
 .menu
   width: 100vw
@@ -136,12 +137,6 @@ a[href='/users/sign_out']
 .field 
   margin-bottom: 10px
 
-.sql #query-result, .sql #right-result 
-  display: inline-block
-
-.sql #right-result 
-  margin-left: 5px
-
 .tasks-container 
   padding: 0
   display: grid
@@ -170,7 +165,7 @@ a[href='/users/sign_out']
   line-height: 2rem
   &:hover 
     box-shadow: hsla(0, 10%, 100%, 0.2) 0px 0px 0.5rem
-    transform: translateY(-3px) scale(1.05)
+    transform: scale(1.05)
     background: $ruby
   &::before 
     color: hsl(0, 0%, 10%)
@@ -196,6 +191,9 @@ h1
 .tasks-page, .contests-page
   width: clamp(200px, 65ch, 80%)
   margin: auto
+
+.contests-page h1
+  text-align: center
 
 .contests-container
   width: 100%
@@ -226,7 +224,6 @@ h1
     width: 100%
     height: 100%
     background: $head-tr-color
-    
   tbody tr:nth-child(odd)
     background: $tbody-tr-color-odd
   tbody tr:nth-child(even)
@@ -254,3 +251,91 @@ h1
   td:nth-child(3) // contest author
     a:hover
       color: hsl(0, 100%, 50%)
+
+.task-page 
+  ustify-items: start
+  margin: auto
+  margin-top: 2rem
+  display: grid
+  gap: 5ch
+  grid-template-columns: 1fr 1fr
+  grid-template-areas: "arrow arrow" "task input" "user-q correct-q"
+  width: clamp(200px, 90%, 95%)
+  a.back
+    grid-area: arrow
+    appearance: button
+    font-size: 1.5rem
+    &:hover
+      color: white
+  .task-info
+    grid-area: task
+    height: max-content
+    padding: 3ch
+    box-shadow: hsl(0, 0%, 25%) 10px 10px 10px
+    background: hsl(0, 0%, 15%)
+  .sql
+    grid-area: input
+  #query-result
+    grid-area: user-q
+  #correct-result
+    grid-area: correct-q
+  textarea
+    width: 100%
+    height: 30ch
+  input[type='submit']
+    margin-top: 2ch
+    font-size: 16px
+  textarea, input[type='submit']
+    color: white
+    background: black
+    padding: 4px
+    &:focus-visible,
+      outline: none
+      border-color: $ruby
+  h2
+    margin-top: 0
+    font-size: 2rem
+    &.task-completed::after
+      content: '✓'
+      color: hsl(90, 100%, 50%)
+  p.task-points-description
+    font-size: 0.8rem
+  #query-result, #correct-result
+    // height: 200vw
+    &>span
+      display: flex
+      margin-bottom: 0.5ch
+  label
+    display: none
+  table
+    width: 100%
+    border: none
+    border-spacing: 0
+    border-collapse: collapse
+    text-align: left
+    text-indent: 2ch
+    tr
+      font-size: 1.2em
+      height: 2.25em
+    th:first-child
+      border-radius: 8px 0 0 0
+    th:last-child
+      border-radius: 0 8px 0 0
+    th, td
+      margin: 0
+      padding: 0
+      border: none
+    th
+      color: white
+      background: $head-tr-color
+    th:last-child::after, td:last-child::after
+      content: 'fill'
+      opacity: 0
+    tbody tr:nth-child(odd)
+      background: $tbody-tr-color-odd
+    tbody tr:nth-child(even)
+      background: $tbody-tr-color-even
+    tbody tr:hover
+      background: $tr-hover-color
+    td a:hover
+      background: hsla(0, 0%, 50%, 0.1)
