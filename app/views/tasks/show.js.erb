@@ -1,7 +1,18 @@
 $('#query-result').html(
-  "<% if @query_result.present? && @query_result != 'Неправильный запрос!' %> <span>Результат запроса</span> <% else %> <% end %> <% if @query_result.present? && @query_result != 'Неправильный запрос!' %> <%= table_for_query_rows(@query_result) %> <% else %> Неправильный запрос! <% end %>"
+  "<% if @query_result.present? && @query_result != nil %>" + 
+    "<span>Результат запроса</span>" + 
+  "<% else %>" + 
+  "<% end %>" + 
+  "<% if @query_result.present? && @query_result != nil %>" + 
+    "<%= table_for_query_rows(@query_result) %>" + 
+  "<% else %> Запрос содержал синтаксическую ошибку <% end %>"
 )
-$('#right-result').html(
-  "<% if @query_result.present? && @query_result != 'Неправильный запрос!' %> <span>Правильный ответ</span> <% else %> <% end %> <% if @query_result.present? && @query_result != 'Неправильный запрос!' %> <%= table_for_query_rows(@correct_result) %> <% end %>"
+$('#correct-result').html(
+  "<% if @query_result.present? && @query_result != nil %>" + 
+    "<span>Правильный результат</span>" + 
+    "<% else %> <% end %>" + 
+  "<% if @query_result.present? && @query_result != nil %>" + 
+    "<%= table_for_query_rows(@correct_result) %>" + 
+  "<% end %>"
 )
-$('.task-page > h2').html("<% if @query_result.present? && @correct_result.present? && @query_result.rows == @correct_result.rows%> <%= @task.name + '(Выполнено)' %> <% end %>")
+$('.task-page > h2').toggleClass('task-completed', true)

@@ -7,17 +7,21 @@
   = csrf_meta_tags
 %body
   .menu
+    .menu-item#skleh
+      %a{href: "#{root_url}"} 
+        %img{src: "https://cdn-icons-png.flaticon.com/512/864/864685.png"}
+        skleh
     .menu-item#contests
-      = link_to "Соревнования", "#{root_url}/contests"
+      = link_to "Соревнования", "#{root_url}contests"
     .menu-item#about
-      %a О Нас
-      -#%a= link_to
+      %a{href: "#{root_url}"} О Нас
     .menu-item#profile
       - if current_user
         %a.username
+          Аккаунт: 
           = current_user.username
-        %a= link_to "Выйти", destroy_user_session_path, method: :delete
+        = link_to "Выйти", destroy_user_session_path, method: :delete
       - else
-        %a= link_to "Войти", new_user_session_path
-        %a= link_to "Регистрация", new_user_registration_path
+        = link_to "Войти", new_user_session_path
+        = link_to "Регистрация", new_user_registration_path
   = yield

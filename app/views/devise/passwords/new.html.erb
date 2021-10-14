@@ -1,5 +1,6 @@
-<h2>Forgot your password?</h2>
-
+<div class="recover-passwd-page">
+<h2>Восстановление пароля</h2>
+<div class="page-body">
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -9,8 +10,11 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Получить инструкцию" %>
   </div>
 <% end %>
-
+<div class="shared-links">
 <%= render "devise/shared/links" %>
+</div>
+</div>
+</div>

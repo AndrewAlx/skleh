@@ -5,6 +5,11 @@ class TasksController < ApplicationController
       return
     end
     @tasks = Task.where(contest_id: params[:contest_id])
+    @task_solved = Hash.new
+    @tasks.map do |task|
+      result = Result.for(current_user, task)&.first&.user_query
+      @task_solved[task] = if result.present? then true else false end
+    end
   end
 
   def show
@@ -41,12 +46,11 @@ class TasksController < ApplicationController
     begin
       results = ActiveRecord::Base.connection.exec_query(sql)
     rescue ActiveRecord::StatementInvalid
-      return 'Неправильный запрос!'
+      return nil
     end
     if results.present?
-      results
-    else
-      nil
+      return results
+    nil
     end
   end
 end
