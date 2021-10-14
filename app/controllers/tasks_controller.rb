@@ -1,9 +1,17 @@
 class TasksController < ApplicationController
   def index
+    if !current_user
+      redirect_to new_user_session_path
+      return
+    end
     @tasks = Task.where(contest_id: params[:contest_id])
   end
 
   def show
+    if !current_user
+      redirect_to new_user_session_path
+      return
+    end
     @task = Task.find(params[:id])
     @user_query = Result.for(current_user, @task)&.first&.user_query || ""
     if params[:q]
