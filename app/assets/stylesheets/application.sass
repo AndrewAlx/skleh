@@ -405,9 +405,26 @@ h1
 
 .recover-passwd-page
   h2
-    height: 5ch
+    height: 5.4ch
   .page-body form input[type='submit']
     margin-top: 2ch
+
+#error_explanation
+  width: 100%
+  ul
+    padding-inline-start: 0
+    li::before
+      display: inline-block
+      text-align: center
+      background: hsl(60, 100%, 50%)
+      border-radius: 50%
+      width: 2.5ch
+      height: 2.5ch
+      font-size: 1rem
+      font-weight: bold
+      content: '!'
+      color: black
+      margin-right: 1ch
 
 
 @media screen and (max-device-aspect-ratio: 1/1)
