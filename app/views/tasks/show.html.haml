@@ -2,7 +2,7 @@
   %a.back{href: ".."} 
     ⬅ Назад
   .task-info
-    %h2{class: "#{'task-completed' if @user_query.present?}"}
+    %h2{class: "task-name#{' task-completed' if @user_query.present?}"}
       = @task.name
     %p.task-description= @task.description
     %p.task-points-description Количество баллов за выполнение: #{@task.points}

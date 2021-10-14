@@ -7,4 +7,4 @@ ru:
         password: Пароль
   errors:
     messages:
-      not_saved: Не удалось сохранить
+      not_saved: Ошибка
