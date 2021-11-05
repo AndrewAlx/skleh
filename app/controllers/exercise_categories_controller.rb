@@ -1,6 +1,6 @@
-class ContestsController < ApplicationController
+class ExerciseCategoriesController < ApplicationController
   def index
-    @contests = Contest.where.not(end_time: nil)
+    @contests = Contest.where(end_time: nil)
   end
 
   def show

@@ -1,0 +1,21 @@
+.exercise-categories-page
+  - if @contests.present?
+    %h1 Упражнения
+    %table.contests-container{cellspacing: "0"}
+      %thead
+        %tr
+          %th 
+            %span #
+          %th 
+            %span Категория
+          %th 
+            %span Автор
+      %tbody
+        - @contests.map do |contest|
+          %tr
+            %td
+              = link_to contest.id, contest
+            %td
+              = link_to contest.name, contest
+            %td
+              = link_to contest.user.username, contest.user
