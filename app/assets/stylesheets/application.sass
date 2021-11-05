@@ -73,7 +73,7 @@ body
   width: 100vw
   height: 3rem
   display: grid
-  grid-template-columns: 2fr 2.7fr 1.5fr 2fr
+  grid-template-columns: 1.5fr 1.7fr 1.7fr 1.3fr 2fr
   .menu-item
     display: flex
     border-right: 2px solid $navbar-border-color
@@ -118,6 +118,15 @@ a[href='/users/sign_out']
   gap: 5ch
   grid-template-columns: 2fr 1fr
   width: clamp(200px, 90%, 95%)
+  ul
+    margin: 0
+    li
+      list-style-type: disclosure-closed
+      margin: 5px
+      a
+        color: white
+        &:hover
+          color: $li-highlight-color
 
 #content, #news 
   display: inline-block
@@ -189,14 +198,15 @@ h1
   font-size: 3rem
   font-weight: normal
 
-.tasks-page, .contests-page
+.tasks-page, .contests-page, .exercise-categories-page, .leaderboard-page
   width: clamp(200px, 65ch, 80%)
   margin: auto
 
-.contests-page h1
-  text-align: center
+.contests-page, .exercise-categories-page, .leaderboard-page
+  h1
+    text-align: center
 
-.contests-container
+.contests-container, .leaderboard-container
   width: 100%
   border-spacing: 0
   border-collapse: collapse
@@ -243,9 +253,7 @@ h1
       align-items: center
   td a:hover
     background: hsla(0, 0%, 50%, 0.1)
-  td:nth-child(3) // contest author
-    a:hover
-      color: hsl(0, 100%, 50%)
+    color: hsl(0, 100%, 50%)
 
 .task-page 
   margin: auto
@@ -331,6 +339,18 @@ h1
       background: $tbody-tr-color-even
     tbody tr:hover
       background: $tr-hover-color
+
+.user-page
+  margin: auto
+  margin-top: 2rem
+  width: clamp(200px, 90%, 95%)
+  height: max-content
+  padding: 3ch
+  box-shadow: hsl(0, 0%, 25%) 10px 10px 10px
+  background: hsl(0, 0%, 15%)
+  h2
+    font-size: 2rem
+    margin: 0
 
 .login-page, .signup-page, .recover-passwd-page
   width: clamp(400px, 35ch, 90%)
