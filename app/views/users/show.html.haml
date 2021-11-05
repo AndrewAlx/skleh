@@ -1,0 +1,21 @@
+.user-page
+  %h2
+    = @user['username']
+  %p
+    Дата регистрации: 
+    = @user['created_at'].strftime('%d.%m.%Y (%H:%M)')
+  - if @user.first_name.present?
+    %p.personal-info
+      Имя: 
+      = @user.first_name
+      %br
+      - if @user.last_name.present?
+        Фамилия: 
+        = @user.last_name
+        %br
+  %p.user-stats
+    Рейтинг: 
+    = @user_stats['rating']
+    %br
+    Задач решено: 
+    = @user_stats['tasks_solved']
