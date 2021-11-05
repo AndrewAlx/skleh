@@ -1,0 +1,30 @@
+.leaderboard-page
+  - if @ratings.present?
+    %h1 Таблица лидеров
+    %table.leaderboard-container{cellspacing: "0"}
+      %thead
+        %tr
+          %th 
+            %span #
+          %th 
+            %span Участник
+          %th 
+            %span Рейтинг
+          %th 
+            %span Задач решено
+          %th 
+            %span Дата регистрации
+      %tbody
+        - @ratings.each_with_index do |record, index|
+          %tr
+            %td
+              = index + 1
+            %td
+              %a{href: "#{root_url}users/#{record['user_id']}"}
+                = record['username']
+            %td
+              = record['rating']
+            %td
+              = record['tasks_solved']
+            %td
+              = record['reg_date'].strftime(format="%d.%m.%Y")
