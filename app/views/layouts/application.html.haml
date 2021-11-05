@@ -13,11 +13,13 @@
         skleh
     .menu-item#contests
       = link_to "Соревнования", "#{root_url}contests"
+    .menu-item#exercise_categories
+      = link_to "Упражнения", "#{root_url}exercise_categories"
     .menu-item#about
-      %a{href: "#{root_url}"} О Нас
+      = link_to "О нас", "#{root_url}about_us"
     .menu-item#profile
       - if current_user
-        %a.username
+        %a.username{href: "#{root_url}users/#{current_user.id}"}
           Аккаунт: 
           = current_user.username
         = link_to "Выйти", destroy_user_session_path, method: :delete

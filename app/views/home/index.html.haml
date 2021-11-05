@@ -1,23 +1,33 @@
 .page
   %section#content
     %h2 
-      Приветствуем на skleh.ru
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-    Eum, iste eveniet. Aut atque iste consequatur nulla quasi? 
-    Nam deserunt placeat quod! 
-    Commodi alias dolor explicabo voluptatem facilis iure reprehenderit quisquam.
+      Приветствуем на skleh
+    Тут вы можете:
+    %ul
+      %li
+        выполнять упражнения разного уровня сложности
+      %li
+        участвовать в соревнованиях 
+      %li
+        создать свое собственное соревнование
+      %li
+        набирать рейтинг и соревноваться с другими 
+        пользователями за место в 
+        = link_to "таблице лидеров", "#{root_url}leaderboard"
+    
   %section#news
     %h2
       Новости
     .news_item_1
       %h3.news-header
         %a{href: "#"}
-          Header 1
+          Начался UTMN-CUP!
       %p.news-content
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+        Соревнование, в котором можно побороться 
+        за звание университетского эксперта по SQL.
     .news_item_2
       %h3.news-header
         %a{href: "#"}
-          Header 2
+          Начался MOIAIS-Final!
       %p.news-content
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+        Контрольная работа для студентов 3 курса МОиАИС.
