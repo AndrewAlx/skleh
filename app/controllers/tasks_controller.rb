@@ -4,7 +4,8 @@ class TasksController < ApplicationController
       redirect_to new_user_session_path
       return
     end
-    @tasks = Task.where(contest_id: params[:contest_id])
+    @contest = Contest.find(params[:contest_id])
+    @tasks = Task.where(contest_id: params[:contest_id]).order(:id)
     @task_solved = Hash.new
     @tasks.map do |task|
       result = Result.for(current_user, task)&.first&.user_query

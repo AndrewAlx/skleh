@@ -1,6 +1,7 @@
 .tasks-page
   - if @tasks.present?
-    %h1 Задачи
+    %h1
+      = @contest.name
     %ul.tasks-container
       - @tasks.map do |task|
         %li
