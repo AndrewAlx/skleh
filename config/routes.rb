@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :contests do
     resources :tasks
+    post :add_participant, on: :member
   end
   resources :exercise_categories do
     resources :tasks

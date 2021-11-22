@@ -410,20 +410,26 @@ h1
           height: 2ch
       .actions
         width: 100%
-      input[type='submit']
-        font-size: 1.5rem
-        height: 100%
-        padding: 0.6ch
-        display: flex
-        justify-content: center
-        color: $main-font-color
-        background: $ruby
-        border: none
-        transition: 100ms
-        &:hover 
-          box-shadow: hsla(0, 10%, 100%, 0.2) 0px 0px 0.5rem
-          cursor: pointer
-          color: white
+
+.login-page, .signup-page, .recover-passwd-page, .tasks-page
+  input[type='submit'], a.participate
+    font-size: 1.5rem
+    height: 100%
+    padding: 0.6ch
+    display: flex
+    justify-content: center
+    color: $main-font-color
+    background: $ruby
+    border: none
+    transition: 100ms
+    &:hover 
+      box-shadow: hsla(0, 10%, 100%, 0.2) 0px 0px 0.5rem
+      cursor: pointer
+      color: white
+
+.tasks-page a.participate
+  height: 2.5ch
+  margin-top: 2rem
 
 .signup-page, .recover-passwd-page
   .page-body form input[type='submit']

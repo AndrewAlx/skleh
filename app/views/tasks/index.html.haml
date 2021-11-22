@@ -1,9 +1,14 @@
 .tasks-page
-  - if @tasks.present?
+  - if @contest_participation.present? || @contest.end_time == nil
+    - if @tasks.present?
+      %h1
+        = @contest.name
+      %ul.tasks-container
+        - @tasks.map do |task|
+          %li
+            %a{class:"task-item difficulty-#{task.points}#{' completed' if @task_solved[task]}", href: "#{contest_task_path(task.contest, task)}"} 
+              = task.name
+  - elsif @contest.end_time.present?
     %h1
       = @contest.name
-    %ul.tasks-container
-      - @tasks.map do |task|
-        %li
-          %a{class:"task-item difficulty-#{task.points}#{' completed' if @task_solved[task]}", href: "#{contest_task_path(task.contest, task)}"} 
-            = task.name
+    = link_to "Участвовать в соревновании", [:add_participant, @contest], method: :post, class: 'participate', remote: true

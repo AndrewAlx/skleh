@@ -7,9 +7,10 @@ class TasksController < ApplicationController
     @contest = Contest.find(params[:contest_id])
     @tasks = Task.where(contest_id: params[:contest_id]).order(:id)
     @task_solved = Hash.new
+    @contest_participation = ContestParticipation.for(current_user, @contest)&.first
     @tasks.map do |task|
       result = Result.for(current_user, task)&.first&.user_query
-      @task_solved[task] = if result.present? then true else false end
+      @task_solved[task] = result.present?
     end
   end
 
