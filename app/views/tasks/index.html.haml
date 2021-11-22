@@ -19,6 +19,8 @@
         solved_count = results.count
         points = 0
         results.map(&:task).each do |task|
-          points += task.points
+          if task.in? (@contest.tasks)
+            points += task.points
+          end
         end
       %li= "#{participant.first_name} #{participant.last_name} (#{participant.username}) | Решено задач: #{solved_count} | Всего баллов: #{points}"
