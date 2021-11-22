@@ -9,5 +9,7 @@
   ```
 
 * Database initialization:
-  * rake db:create
-  * rails db:schema:load
+  ```
+  rake db:create
+  rails db:schema:load
+  ```
