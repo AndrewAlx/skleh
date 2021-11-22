@@ -12,3 +12,13 @@
     %h1
       = @contest.name
     = link_to "Участвовать в соревновании", [:add_participant, @contest], method: :post, class: 'participate', remote: true
+  %ul
+    - @contest.participants.each do |participant|
+      :ruby
+        results = Result.where(user_id: participant.id)
+        solved_count = results.count
+        points = 0
+        results.map(&:task).each do |task|
+          points += task.points
+        end
+      %li= "#{participant.first_name} #{participant.last_name} (#{participant.username}) | Решено задач: #{solved_count} | Всего баллов: #{points}"

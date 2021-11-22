@@ -21,4 +21,8 @@ class TaskPolicy < ApplicationPolicy
   def solve?
     not Result.for(user, record).present?
   end
+
+  def view_participants?
+    user.admin? || record.contest.user == current_user
+  end
 end

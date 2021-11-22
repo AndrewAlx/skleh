@@ -12,3 +12,13 @@
       = f.submit "Отправить"
   #query-result
   #correct-result
+  #participants
+    %h3 Решившие участники
+    %ul
+      - if allowed_to? :view_participants?, @task
+        - @task.results.each do |result|
+          - user = result.user
+          %li
+            = "#{result.user.first_name} #{result.user.last_name} (#{result.user.username})"
+            %div
+              %textarea{ disabled: true}= result.user_query
