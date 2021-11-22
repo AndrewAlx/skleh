@@ -7,4 +7,4 @@
 
 * Database initialization:
   * rake db:create
-  * rails db:migrate
+  * rails db:schema:load
