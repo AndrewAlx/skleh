@@ -13,14 +13,15 @@
       = @contest.name
     = link_to "Участвовать в соревновании", [:add_participant, @contest], method: :post, class: 'participate', remote: true
   %ul
+    %h3
+      Участники
     - @contest.participants.each do |participant|
       :ruby
         results = Result.where(user_id: participant.id)
-        solved_count = 0
+        solved_count = results.count
         points = 0
         results.map(&:task).each do |task|
           if task.in? @contest.tasks
-            seloved_count += 1
             points += task.points
           end
         end

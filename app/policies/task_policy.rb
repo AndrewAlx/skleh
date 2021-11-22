@@ -23,6 +23,6 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def view_participants?
-    user.admin? || record.contest.user == current_user
+    user.admin? || record.contest.user == user
   end
 end

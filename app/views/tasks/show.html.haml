@@ -13,9 +13,9 @@
   #query-result
   #correct-result
   #participants
-    %h3 Решившие участники
-    %ul
-      - if allowed_to? :view_participants?, @task
+    - if allowed_to? :view_participants?, @task
+      %h3 Решившие участники
+      %ul
         - @task.results.each do |result|
           - user = result.user
           %li

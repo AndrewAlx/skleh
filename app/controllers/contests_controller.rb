@@ -1,6 +1,6 @@
 class ContestsController < ApplicationController
   def index
-    @contests = Contest.where.not(end_time: nil)
+    @contests = Contest.where.not(end_time: nil).order(:id)
   end
 
   def show
