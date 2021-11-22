@@ -19,7 +19,7 @@
         solved_count = results.count
         points = 0
         results.map(&:task).each do |task|
-          if task.in? (@contest.tasks)
+          if task.in? @contest.tasks
             points += task.points
           end
         end
