@@ -16,10 +16,11 @@
     - @contest.participants.each do |participant|
       :ruby
         results = Result.where(user_id: participant.id)
-        solved_count = results.count
+        solved_count = 0
         points = 0
         results.map(&:task).each do |task|
           if task.in? @contest.tasks
+            seloved_count += 1
             points += task.points
           end
         end
