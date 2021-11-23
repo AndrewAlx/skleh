@@ -1,24 +1,30 @@
 .task-page
-  %a.back{href: ".."} 
+  %a.back{href: ".."}
     ⬅ Назад
-  .task-info
-    %h2{class: "task-name#{' task-completed' if @user_query.present?}"}
-      = @task.name
-    %p.task-description= @task.description
-    %p.task-points-description Количество баллов за выполнение: #{@task.points}
-  .sql
-    = simple_form_for [@task.contest, @task], method: :get, url: url_for(controller: params[:controller], action: :show), as: 'q', remote: true do |f|
-      = f.input :query, as: :text, input_html: {value: @user_query, placeholder: "Введите ваш запрос"}
-      = f.submit "Отправить"
-  #query-result
-  #correct-result
-  #participants
-    - if allowed_to? :view_participants?, @task
-      %h3 Решившие участники
-      %ul
-        - @task.results.each do |result|
-          - user = result.user
-          %li
-            = "#{result.user.first_name} #{result.user.last_name} (#{result.user.username})"
-            %div
-              %textarea{ disabled: true}= result.user_query
+  - if allowed_to? :solve?, @task
+    .task-info
+      %h2{class: "task-name#{' task-completed' if @user_query.present?}"}
+        = @task.name
+      %p.task-description= @task.description
+      %p.task-points-description Количество баллов за выполнение: #{@task.points}
+    .sql
+      = simple_form_for [@task.contest, @task], method: :get, url: url_for(controller: params[:controller], action: :show), as: 'q', remote: true do |f|
+        = f.input :query, as: :text, input_html: {value: @user_query, placeholder: "Введите ваш запрос"}
+        = f.submit "Отправить"
+    #query-result
+    #correct-result
+    #participants
+      - if allowed_to? :view_participants?, @task
+        %h3 Решившие участники
+        %ul
+          - @task.results.each do |result|
+            - user = result.user
+            %li
+              = "#{result.user.first_name} #{result.user.last_name} (#{result.user.username})"
+              %div
+                %textarea{ disabled: true}= result.user_query
+  - else
+    - if @task.contest.end_time < Time.now
+      Соревнование завершено!
+    - else
+      Соревнование еще не началось!

@@ -3,6 +3,8 @@
     - if @tasks.present?
       %h1
         = @contest.name
+        - if @contest.end_time < Time.now
+          = "(Завершено)"
       %ul.tasks-container
         - @tasks.map do |task|
           %li

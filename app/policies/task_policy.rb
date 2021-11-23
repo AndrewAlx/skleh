@@ -19,7 +19,8 @@ class TaskPolicy < ApplicationPolicy
   # end
 
   def solve?
-    not Result.for(user, record).present?
+    query_info = UserQueryInfo.where(user_id: user.id, task_id: record.id).order(ended_at: :desc)&.last
+    record.contest.active? && ((not query_info.present?) || query_info.cooldown_ended?)
   end
 
   def view_participants?

@@ -1,6 +1,7 @@
 class ContestsController < ApplicationController
   def index
-    @contests = Contest.where.not(end_time: nil).order(:id)
+    @contests = Contest.where("end_time >= ?", Time.now).order(:id)
+    @finished_contests = Contest.where("end_time < ?", Time.now).order(id: :desc)
   end
 
   def show

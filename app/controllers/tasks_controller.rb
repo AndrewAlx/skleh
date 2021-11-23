@@ -24,14 +24,25 @@ class TasksController < ApplicationController
     if params[:q]
       query = params[:q][:query] if params[:q][:query].present?
     end
-
-    if query.present?
-      @query_result = execute_sql(query)
-      @correct_result = execute_sql(@task.correct_sql)
-      if @query_result.present? && @correct_result.present? && @query_result.rows == @correct_result.rows
-        if allowed_to? :solve?, @task
-          result = Result.new(user: current_user, task: @task, user_query: query)
-          result.save
+    if allowed_to? :solve?, @task
+      if query.present?
+        query_info = UserQueryInfo.new(user_id: current_user.id,
+                                       task_id: @task.id,
+                                       started_at: Time.now,
+                                       user_query: query)
+        @query_result = execute_sql(query)
+        @correct_result = execute_sql(@task.correct_sql)
+        query_info.ended_at = Time.now
+        query_info.save
+        if @query_result.present? && @correct_result.present? && @query_result.rows == @correct_result.rows
+          old_result = Result.where(user: current_user, task: @task)&.first
+          if old_result.present?
+            old_result.user_query = query
+            old_result.save
+          else
+            result = Result.new(user: current_user, task: @task, user_query: query)
+            result.save
+          end
         end
       end
     end
@@ -52,7 +63,7 @@ class TasksController < ApplicationController
     end
     if results.present?
       return results
-    nil
+      nil
     end
   end
 end
