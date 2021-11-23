@@ -19,7 +19,7 @@ class TaskPolicy < ApplicationPolicy
   # end
 
   def solve?
-    query_info = UserQueryInfo.where(user_id: user.id, task_id: record.id).order(ended_at: :desc)&.last
+    query_info = UserQueryInfo.where(user_id: user.id, task_id: record.id).order(ended_at: :desc)&.first
     record.contest.active? && ((not query_info.present?) || query_info.cooldown_ended?)
   end
 

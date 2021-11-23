@@ -11,7 +11,6 @@ class UserQueryInfo < ApplicationRecord
 
   def cooldown_ended?
     offset = [MIN_COOLDOWN_OFFSET, duration * 2.5].max
-    binding.pry
     Time.now > ended_at + offset
   end
 end

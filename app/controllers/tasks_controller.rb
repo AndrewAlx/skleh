@@ -34,7 +34,8 @@ class TasksController < ApplicationController
         @correct_result = execute_sql(@task.correct_sql)
         query_info.ended_at = Time.now
         query_info.save
-        if @query_result.present? && @correct_result.present? && @query_result.rows == @correct_result.rows
+
+        if @query_result.present? && @query_result != "error" && @correct_result.present? && @query_result.rows == @correct_result.rows
           old_result = Result.where(user: current_user, task: @task)&.first
           if old_result.present?
             old_result.user_query = query
@@ -43,7 +44,18 @@ class TasksController < ApplicationController
             result = Result.new(user: current_user, task: @task, user_query: query)
             result.save
           end
+          @is_solution_correct = true
+        else
+          @is_solution_correct = false
         end
+        if @query_result == "error"
+          @error_msg = "Запрос содержал синтаксическую ошибку"
+          @query_result = nil
+        end
+      end
+    else
+      if @task.contest.active?
+        @error_msg = "Вы выполняете запросы слишком часто"
       end
     end
 
@@ -58,12 +70,9 @@ class TasksController < ApplicationController
   def execute_sql(sql)
     begin
       results = ActiveRecord::Base.connection.exec_query(sql)
-    rescue ActiveRecord::StatementInvalid
-      return nil
-    end
-    if results.present?
       return results
-      nil
+    rescue ActiveRecord::StatementInvalid
+      return "error"
     end
   end
 end

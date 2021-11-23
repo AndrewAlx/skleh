@@ -1,18 +1,15 @@
 $('#query-result').html(
-  "<% if @query_result.present? && @query_result != nil %>" + 
-    "<span>Результат запроса</span>" + 
-  "<% else %>" + 
-  "<% end %>" + 
-  "<% if @query_result.present? && @query_result != nil %>" + 
-    "<%= table_for_query_rows(@query_result) %>" + 
-  "<% else %> Запрос содержал синтаксическую ошибку <% end %>"
+  "<% if @query_result.present? && @query_result != nil %>" +
+    "<span>Результат запроса</span>" +
+    "<%= table_for_query_rows(@query_result) %>" +
+  "<% else %> <%= @error_msg %> <% end %>"
 )
 $('#correct-result').html(
-  "<% if @query_result.present? && @query_result != nil %>" + 
-    "<span>Правильный результат</span>" + 
-    "<% else %> <% end %>" + 
-  "<% if @query_result.present? && @query_result != nil %>" + 
-    "<%= table_for_query_rows(@correct_result) %>" + 
+  "<% if @correct_result.present? && @correct_result != nil %>" +
+    "<span>Правильный результат</span>" +
+    "<%= table_for_query_rows(@correct_result) %>" +
   "<% end %>"
 )
-$('h2.task-name').toggleClass('task-completed', true)
+<% if @is_solution_correct %>
+  $('h2.task-name').toggleClass('task-completed', true)
+<% end %>
